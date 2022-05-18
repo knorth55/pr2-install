@@ -28,3 +28,6 @@
 [submodule "pr2-kernel-meta"]
 	path = pr2-kernel-meta
 	url = git@github.com:knorth55/pr2-kernel-meta.git
+[submodule "pr2-udev"]
+	path = pr2-udev
+	url = git@github.com:knorth55/pr2-udev.git

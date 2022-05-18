@@ -1,28 +1,33 @@
-.PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel pr2-kernel-headers executable-selector
+.PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-udev pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel pr2-kernel-headers executable-selector
 
-all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel-meta executable-selector
+all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-udev pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel-meta executable-selector
 
 install:
-	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb pr2-ckill_*.deb pr2-kernel_*.deb pr2-kernel-headers_*.deb executable-selector_*.deb
+	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-udev_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb pr2-ckill_*.deb pr2-kernel_*.deb pr2-kernel-headers_*.deb executable-selector_*.deb
 
 clean:
 	rm debs/* -f
+	cd executable-selector/; git clean -fxd .
+	cd pr2-ckill/; git clean -fxd .
 	cd pr2-core/; git clean -fxd .
 	cd pr2-core-noetic/; git clean -fxd .
 	cd pr2-ft/; git clean -fxd .
-	cd pr2-users/; git clean -fxd .
+	cd pr2-iptables.d/; git clean -fxd .
+	cd pr2-kernel-meta/; git clean -fxd .
 	cd pr2-netboot/; git clean -fxd .
 	cd pr2-network/; git clean -fxd .
-	cd pr2-iptables.d/; git clean -fxd .
-	cd pr2-ckill/; git clean -fxd .
-	cd pr2-kernel-meta/; git clean -fxd .
-	cd executable-selector/; git clean -fxd .
+	cd pr2-udev/; git clean -fxd .
+	cd pr2-users/; git clean -fxd .
 
 purge:
 	sudo apt purge pr2-core pr2-core-noetic pr2-ft pr2-users pr2-netboot pr2-network pr2-iptables.d pr2-kernel pr2-kernel-headers executable-selector
 
 install-dpkg-dev:
 	sudo apt install -y dpkg-dev fakeroot debhelper cdbs
+
+pr2-udev: pr2-udev/* pr2-core
+	cd pr2-udev/; dpkg-buildpackage -rfakeroot -us -uc
+	mv pr2-udev_*.buildinfo pr2-udev_*.changes pr2-udev_*.deb pr2-udev_*.dsc pr2-udev_*.tar.gz debs/
 
 pr2-core: pr2-core/* pr2-users pr2-ft
 	sudo apt install -y fortunes fortune-mod
