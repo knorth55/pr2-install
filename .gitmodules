@@ -13,9 +13,6 @@
 [submodule "pr2-netboot"]
 	path = pr2-netboot
 	url = git@github.com:knorth55/pr2-netboot.git
-[submodule "pr2-kernel"]
-	path = pr2-kernel
-	url = git@github.com:knorth55/pr2-kernel.git
 [submodule "pr2-network"]
 	path = pr2-network
 	url = git@github.com:knorth55/pr2-network.git
