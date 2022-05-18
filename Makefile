@@ -1,9 +1,9 @@
-.PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill executable-selector
+.PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel pr2-kernel-headers executable-selector
 
-all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill executable-selector
+all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel pr2-kernel-headers executable-selector
 
 install:
-	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb pr2-ckill_*.deb executable-selector_*.deb
+	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb pr2-ckill_*.deb pr2-kernel_*.deb pr2-kernel-headers_*.deb executable-selector_*.deb
 
 clean:
 	rm debs/* -f
@@ -15,10 +15,11 @@ clean:
 	cd pr2-network/; git clean -fxd .
 	cd pr2-iptables.d/; git clean -fxd .
 	cd pr2-ckill/; git clean -fxd .
+	cd pr2-kernel-meta/; git clean -fxd .
 	cd executable-selector/; git clean -fxd .
 
 purge:
-	sudo apt purge pr2-core pr2-core-noetic pr2-ft pr2-users pr2-netboot pr2-network pr2-iptables.d executable-selector
+	sudo apt purge pr2-core pr2-core-noetic pr2-ft pr2-users pr2-netboot pr2-network pr2-iptables.d pr2-kernel pr2-kernel-headers executable-selector
 
 install-dpkg-dev:
 	sudo apt install -y dpkg-dev fakeroot debhelper cdbs
@@ -60,6 +61,10 @@ pr2-iptables.d: pr2-iptables.d/*
 pr2-ckill: pr2-ckill/*
 	cd pr2-ckill/; dpkg-buildpackage -rfakeroot -us -uc
 	mv pr2-ckill_*.buildinfo pr2-ckill_*.changes pr2-ckill_*.deb pr2-ckill_*.dsc pr2-ckill_*.tar.gz debs/
+
+pr2-kernel-meta: pr2-kernel-meta/*
+	cd pr2-kernel-meta/; dpkg-buildpackage -rfakeroot -us -uc
+	mv pr2-kernel-meta_*.buildinfo pr2-kernel-meta_*.changes pr2-kernel_*.deb pr2-kernel-headers_*.deb pr2-kernel-meta_*.dsc pr2-kernel-meta_*.tar.gz debs/
 
 executable-selector: executable-selector/*
 	cd executable-selector/; dpkg-buildpackage -rfakeroot -us -uc
