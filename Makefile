@@ -1,9 +1,9 @@
-.PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d
+.PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill executable-selector
 
-all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d
+all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill executable-selector
 
 install:
-	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb executable-selector_*.deb
+	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb pr2-ckill_*.deb executable-selector_*.deb
 
 clean:
 	rm debs/* -f
@@ -14,6 +14,7 @@ clean:
 	cd pr2-netboot/; git clean -fxd .
 	cd pr2-network/; git clean -fxd .
 	cd pr2-iptables.d/; git clean -fxd .
+	cd pr2-ckill/; git clean -fxd .
 	cd executable-selector/; git clean -fxd .
 
 purge:
@@ -55,6 +56,10 @@ pr2-network: pr2-network/* pr2-iptables.d
 pr2-iptables.d: pr2-iptables.d/*
 	cd pr2-iptables.d/; dpkg-buildpackage -rfakeroot -us -uc
 	mv pr2-iptables.d_*.buildinfo pr2-iptables.d_*.changes pr2-iptables.d_*.deb pr2-iptables.d_*.dsc pr2-iptables.d_*.tar.gz debs/
+
+pr2-ckill: pr2-ckill/*
+	cd pr2-ckill/; dpkg-buildpackage -rfakeroot -us -uc
+	mv pr2-ckill_*.buildinfo pr2-ckill_*.changes pr2-ckill_*.deb pr2-ckill_*.dsc pr2-ckill_*.tar.gz debs/
 
 executable-selector: executable-selector/*
 	cd executable-selector/; dpkg-buildpackage -rfakeroot -us -uc
