@@ -1,6 +1,6 @@
 .PHONY: pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel pr2-kernel-headers executable-selector
 
-all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel pr2-kernel-headers executable-selector
+all: install-dpkg-dev pr2-users pr2-ft pr2-core pr2-core-noetic pr2-netboot pr2-network pr2-iptables.d pr2-ckill pr2-kernel-meta executable-selector
 
 install:
 	cd debs/; dpkg -i pr2-users_*.deb pr2-ft_*.deb pr2-core_*.deb pr2-core-noetic_*.deb pr2-netboot_*.deb pr2-network_*.deb pr2-iptables.d_*.deb pr2-ckill_*.deb pr2-kernel_*.deb pr2-kernel-headers_*.deb executable-selector_*.deb
@@ -63,6 +63,7 @@ pr2-ckill: pr2-ckill/*
 	mv pr2-ckill_*.buildinfo pr2-ckill_*.changes pr2-ckill_*.deb pr2-ckill_*.dsc pr2-ckill_*.tar.gz debs/
 
 pr2-kernel-meta: pr2-kernel-meta/*
+	sudo apt install -y linux-image-5.13.0-41-lowlatency linux-headers-5.13.0-41-lowlatency
 	cd pr2-kernel-meta/; dpkg-buildpackage -rfakeroot -us -uc
 	mv pr2-kernel-meta_*.buildinfo pr2-kernel-meta_*.changes pr2-kernel_*.deb pr2-kernel-headers_*.deb pr2-kernel-meta_*.dsc pr2-kernel-meta_*.tar.gz debs/
 
