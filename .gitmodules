@@ -28,3 +28,6 @@
 [submodule "pr2-ckill"]
 	path = pr2-ckill
 	url = https://github.com/knorth55/pr2-ckill.git
+[submodule "pr2-kernel-meta"]
+	path = pr2-kernel-meta
+	url = git@github.com:knorth55/pr2-kernel-meta.git
