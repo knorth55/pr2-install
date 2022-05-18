@@ -1,0 +1,12 @@
+[submodule "pr2-users"]
+	path = pr2-users
+	url = https://github.com/knorth55/pr2-users.git
+[submodule "pr2-ft"]
+	path = pr2-ft
+	url = https://github.com/knorth55/pr2-ft.git
+[submodule "pr2-core-noetic"]
+	path = pr2-core-noetic
+	url = https://github.com/knorth55/pr2-core-noetic.git
+[submodule "pr2-core"]
+	path = pr2-core
+	url = https://github.com/knorth55/pr2-core.git
