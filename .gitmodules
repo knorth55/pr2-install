@@ -31,3 +31,6 @@
 [submodule "pr2-udev"]
 	path = pr2-udev
 	url = git@github.com:knorth55/pr2-udev.git
+[submodule "pr2-grant"]
+	path = pr2-grant
+	url = git@github.com:knorth55/pr2-grant.git
