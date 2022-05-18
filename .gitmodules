@@ -25,3 +25,6 @@
 [submodule "executable-selector"]
 	path = executable-selector
 	url = git@github.com:knorth55/executable-selector.git
+[submodule "pr2-ckill"]
+	path = pr2-ckill
+	url = https://github.com/knorth55/pr2-ckill.git
