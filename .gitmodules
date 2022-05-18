@@ -16,3 +16,9 @@
 [submodule "pr2-kernel"]
 	path = pr2-kernel
 	url = git@github.com:knorth55/pr2-kernel.git
+[submodule "pr2-network"]
+	path = pr2-network
+	url = git@github.com:knorth55/pr2-network.git
+[submodule "pr2-iptables.d"]
+	path = pr2-iptables.d
+	url = git@github.com:knorth55/pr2-iptables.d.git
