@@ -22,3 +22,6 @@
 [submodule "pr2-iptables.d"]
 	path = pr2-iptables.d
 	url = git@github.com:knorth55/pr2-iptables.d.git
+[submodule "executable-selector"]
+	path = executable-selector
+	url = git@github.com:knorth55/executable-selector.git
