@@ -51,7 +51,7 @@ pr2-users: pr2-users/*
 	mv pr2-users_*.buildinfo pr2-users_*.changes pr2-users_*.deb pr2-users_*.dsc pr2-users_*.tar.gz debs/
 
 pr2-netboot: pr2-netboot/* pr2-network executable-selector
-	sudo apt install -y nfs-kernel-server nfs-client atftpd dnsmasq unionfs-fuse portmap
+	sudo apt install -y nfs-kernel-server nfs-client atftpd dnsmasq unionfs-fuse portmap pxelinux tftp
 	cd pr2-netboot/; dpkg-buildpackage -rfakeroot -us -uc
 	mv pr2-netboot_*.buildinfo pr2-netboot_*.changes pr2-netboot_*.deb pr2-netboot_*.dsc pr2-netboot_*.tar.gz debs/
 
